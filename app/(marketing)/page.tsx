@@ -1,5 +1,7 @@
 import React from 'react';
 import Heading from "@/app/(marketing)/_components/heading";
+import Hero from "@/app/(marketing)/_components/hero";
+import Footer from "@/app/(marketing)/_components/footer";
 
 const MarketingPage = () => {
     return (
@@ -16,7 +18,9 @@ const MarketingPage = () => {
                     pb-10   
                 `}>
                 <Heading/>
+                <Hero/>
             </div>
+            <Footer/>
         </div>
     );
 };
