@@ -5,7 +5,7 @@ import {ModeToggle} from "@/components/mode-toogle";
 
 const Footer = () => {
     return (
-        <div className={`flex items-center w-full p-6 bg-background z-50`}>
+        <div className={`flex items-center w-full p-6 dark:bg-neutral-800 bg-background z-50`}>
             <Logo/>
             <div className={`
                 md:ml-auto
