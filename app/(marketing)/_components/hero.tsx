@@ -12,7 +12,6 @@ const Hero = () => {
             <div className={`flex-col items-center`}>
                 <div className={`relative w-[300px] h-[300px] sm:w-[350px] sm:h-[350px] md:w-[400px] md:h-[400px]`}>
                     <Image src="/black&white-nobg.png" fill className={`object-contain`} alt="Hero"/>
-
                 </div>
             </div>
         </div>

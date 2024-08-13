@@ -3,6 +3,7 @@ import {Poppins} from "next/font/google";
 import "./globals.css";
 import React from "react";
 import {ThemeProvider} from "@/components/theme-provider";
+import {ConvexClientProvider} from "@/components/convex-provider";
 
 const poppins = Poppins({
     weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -36,16 +37,18 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
         <body className={poppins.className}>
-        <ThemeProvider
-            attribute={`class`}
-            defaultTheme={`system`}
-            enableSystem
-            disableTransitionOnChange
-            storageKey={`Nobsi-theme`}
-        >
+        <ConvexClientProvider>
+            <ThemeProvider
+                attribute={`class`}
+                defaultTheme={`system`}
+                enableSystem
+                disableTransitionOnChange
+                storageKey={`Nobsi-theme`}
+            >
 
-            {children}
-        </ThemeProvider>
+                {children}
+            </ThemeProvider>
+        </ConvexClientProvider>
         </body>
         </html>
     );
