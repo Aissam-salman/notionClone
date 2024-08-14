@@ -6,6 +6,7 @@ import {ArrowRightIcon} from "@radix-ui/react-icons";
 import {useConvexAuth} from "convex/react";
 import {Spinner} from "@/components/ui/spinner";
 import Link from "next/link";
+import {SignInButton} from "@clerk/nextjs";
 
 const Heading = () => {
     const {isAuthenticated, isLoading} = useConvexAuth();
@@ -25,12 +26,20 @@ const Heading = () => {
                 </div>
             )}
             {isAuthenticated && !isLoading && (
-                <Button>
+                <Button asChild>
                     <Link href={`/documents`}>
                         Enter Nobsi
                         <ArrowRightIcon className={`h-4 w-4 ml-2`}/>
                     </Link>
                 </Button>
+            )}
+            {!isAuthenticated && !isLoading && (
+                <SignInButton mode={`modal`}>
+                    <Button>
+                        Try Nobsi free
+                        <ArrowRightIcon className={`h-4 w-4 ml-2`}/>
+                    </Button>
+                </SignInButton>
             )}
         </div>
     );
