@@ -4,6 +4,7 @@ import "./globals.css";
 import React from "react";
 import {ThemeProvider} from "@/components/theme-provider";
 import {ConvexClientProvider} from "@/components/convex-provider";
+import {Toaster} from "sonner";
 
 const poppins = Poppins({
     weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -47,6 +48,7 @@ export default function RootLayout({
             >
 
                 {children}
+                <Toaster/>
             </ThemeProvider>
         </ConvexClientProvider>
         </body>
