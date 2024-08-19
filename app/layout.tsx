@@ -2,9 +2,10 @@ import type {Metadata} from "next";
 import {Poppins} from "next/font/google";
 import "./globals.css";
 import React from "react";
-import {ThemeProvider} from "@/components/theme-provider";
-import {ConvexClientProvider} from "@/components/convex-provider";
+import {ThemeProvider} from "@/components/providers/theme-provider";
+import {ConvexClientProvider} from "@/components/providers/convex-provider";
 import {Toaster} from "sonner";
+import {ModalProvider} from "@/components/providers/modal-provider";
 
 const poppins = Poppins({
     weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -46,9 +47,9 @@ export default function RootLayout({
                 disableTransitionOnChange
                 storageKey={`Nobsi-theme`}
             >
-
-                {children}
                 <Toaster/>
+                <ModalProvider />
+                {children}
             </ThemeProvider>
         </ConvexClientProvider>
         </body>
