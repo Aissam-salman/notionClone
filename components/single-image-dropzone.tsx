@@ -6,6 +6,7 @@ import * as React from "react";
 import { type DropzoneOptions, useDropzone } from "react-dropzone";
 import { twMerge } from "tailwind-merge";
 import {Spinner} from "@/components/ui/spinner";
+import imageCompression from "browser-image-compression";
 
 const variants = {
   base: "relative rounded-md flex justify-center items-center flex-col cursor-pointer min-h-[150px] min-w-[200px] border border-dashed border-gray-400 dark:border-gray-300 transition-colors duration-200 ease-in-out",
@@ -59,6 +60,23 @@ const SingleImageDropzone = React.forwardRef<HTMLInputElement, InputProps>(
       return null;
     }, [value]);
 
+    // compress
+    const handleDrop = async (acceptedFiles: File[]) => {
+      const file = acceptedFiles[0];
+      if(file){
+        try {
+          const compressedFile = await imageCompression(file, {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 1920,
+            useWebWorker: true,
+          });
+          void onChange?.(compressedFile);
+        } catch (err) {
+          console.error("Error during image compression:",err);
+        }
+      }
+    }
+
     // dropzone configuration
     const {
       getRootProps,
@@ -72,12 +90,7 @@ const SingleImageDropzone = React.forwardRef<HTMLInputElement, InputProps>(
       accept: { "image/*": [] },
       multiple: false,
       disabled,
-      onDrop: (acceptedFiles) => {
-        const file = acceptedFiles[0];
-        if (file) {
-          void onChange?.(file);
-        }
-      },
+      onDrop: handleDrop,
       ...dropzoneOptions,
     });
 
