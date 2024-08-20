@@ -1,39 +1,39 @@
 "use client";
-import React from 'react';
-import {useConvexAuth} from "convex/react";
-import {Spinner} from "@/components/ui/spinner";
-import {redirect} from "next/navigation";
+import React from "react";
+import { useConvexAuth } from "convex/react";
+import { Spinner } from "@/components/ui/spinner";
+import { redirect } from "next/navigation";
 import Navigation from "@/app/(main)/_components/navigation";
 import SearchCommand from "@/components/search-command";
 
 interface LayoutProps {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }
 
-const MainLayout = ({children}: LayoutProps) => {
-    const {isAuthenticated, isLoading} = useConvexAuth();
+const MainLayout = ({ children }: LayoutProps) => {
+  const { isAuthenticated, isLoading } = useConvexAuth();
 
-    if (isLoading) {
-        return (
-            <div className={`h-full flex items-center justify-center`}>
-                <Spinner size={`lg`}/>
-            </div>
-        )
-    }
-
-    if (!isAuthenticated) {
-        return redirect('/');
-    }
-
+  if (isLoading) {
     return (
-        <div className={`h-full flex dark:bg-neutral-800`}>
-            <Navigation/>
-            <main className={`flex-1 h-full overflow-y-auto`}>
-                <SearchCommand/>
-                {children}
-            </main>
-        </div>
+      <div className={`h-full flex items-center justify-center`}>
+        <Spinner size={`lg`} />
+      </div>
     );
+  }
+
+  if (!isAuthenticated) {
+    return redirect("/");
+  }
+
+  return (
+    <div className={`h-full flex dark:bg-neutral-800`}>
+      <Navigation />
+      <main className={`flex-1 h-full overflow-y-auto`}>
+        <SearchCommand />
+        {children}
+      </main>
+    </div>
+  );
 };
 
 export default MainLayout;

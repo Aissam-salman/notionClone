@@ -1,12 +1,13 @@
-import React from 'react';
+import React from "react";
 import Heading from "@/app/(marketing)/_components/heading";
 import Hero from "@/app/(marketing)/_components/hero";
 import Footer from "@/app/(marketing)/_components/footer";
 
 const MarketingPage = () => {
-    return (
-        <div className={`min-h-full flex flex-col`}>
-            <div className={`flex
+  return (
+    <div className={`min-h-full flex flex-col`}>
+      <div
+        className={`flex
                     flex-col
                     items-center
                     justify-center
@@ -16,13 +17,14 @@ const MarketingPage = () => {
                     flex-1
                     px-6
                     pb-10   
-                `}>
-                <Heading/>
-                <Hero/>
-            </div>
-            <Footer/>
-        </div>
-    );
+                `}
+      >
+        <Heading />
+        <Hero />
+      </div>
+      <Footer />
+    </div>
+  );
 };
 
 export default MarketingPage;
