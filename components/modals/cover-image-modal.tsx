@@ -30,12 +30,10 @@ export const CoverImageModal = () => {
 
       const res = await edgestore.publicFiles.upload({
         file,
-        onProgressChange: (progress) => {
-          // you can use this to show a progress bar
-          console.log(progress);
+        options: {
+          replaceTargetUrl: coverImage.url,
         },
       });
-      console.log(res);
 
       await update({
         id: params.documentId as Id<"documents">,
