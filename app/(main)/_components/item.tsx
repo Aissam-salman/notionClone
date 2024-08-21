@@ -50,7 +50,6 @@ export const Item = ({
   icon: Icon,
 }: ItemProps) => {
   const { user } = useUser();
-
   const create = useMutation(api.documents.create);
   const archive = useMutation(api.documents.archive);
   const router = useRouter();
@@ -58,7 +57,7 @@ export const Item = ({
   const onArchive = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     event.stopPropagation();
     if (!id) return;
-    const promise = archive({ id });
+    const promise = archive({ id }).then(() => router.push("/documents"));
     toast.promise(promise, {
       loading: "Moving to trash...",
       success: "Note moved to trash!",
@@ -80,7 +79,7 @@ export const Item = ({
         if (!expanded) {
           onExpand?.();
         }
-        // router.push(`/documents/${documentId}`);
+        router.push(`/documents/${documentId}`);
       },
     );
 
@@ -116,9 +115,9 @@ export const Item = ({
       {documentIcon ? (
         <div className="text-[18px] shrink-0 mr-2">{documentIcon}</div>
       ) : isSearch ? (
-        <Icon className="h-4 shrink-0 text-muted-foreground mr-2" />
+        <Icon className="h-4 w-[18px] shrink-0 text-muted-foreground mr-2" />
       ) : (
-        <Icon className="h-[18px] shrink-0 text-muted-foreground mr-2" />
+        <Icon className="h-[18px] w-[18px] shrink-0 text-muted-foreground mr-2" />
       )}
       <span className="truncate">{label}</span>
       {isSearch && (

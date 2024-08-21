@@ -18,6 +18,7 @@ import { api } from "@/convex/_generated/api";
 import { Item } from "@/app/(main)/_components/item";
 import { toast } from "sonner";
 import DocumentList from "@/app/(main)/_components/document-list";
+import {useRouter} from "next/navigation"
 import {
   Popover,
   PopoverContent,
@@ -29,6 +30,7 @@ import { useSettings } from "@/hooks/use-settings";
 import Navbar from "@/app/(main)/_components/navbar";
 
 const Navigation = () => {
+  const router = useRouter();
   const search = useSearch();
   const settings = useSettings();
   const pathname = usePathname();
@@ -115,13 +117,17 @@ const Navigation = () => {
   const handleCreate = () => {
     const promise = create({
       title: "Untitled",
-    });
+    }).then((documentId) =>
+        router.push(`/documents/${documentId}`)
+    );
+
 
     toast.promise(promise, {
       loading: "Creating new note...",
       success: "New note created!",
       error: "Failed to create a new note.",
     });
+
   };
 
   return (
