@@ -2,7 +2,7 @@
 
 import { BlockNoteEditor, PartialBlock } from "@blocknote/core";
 import { useCreateBlockNote } from "@blocknote/react";
-import "@blocknote/shadcn/style.css";
+import "@blocknote/core/style.css";
 import { BlockNoteView } from "@blocknote/shadcn";
 import { useTheme } from "next-themes";
 import {useEdgeStore} from "@/lib/edgestore";
